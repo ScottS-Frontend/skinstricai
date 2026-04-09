@@ -18,7 +18,7 @@
 }
 
 .logo {
-  font-family: 'Roobert TRIAL', sans-serif;
+  font-family: "Roobert TRIAL", sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
@@ -38,7 +38,7 @@
   color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
-  font-family: 'Roobert TRIAL', sans-serif;
+  font-family: "Roobert TRIAL", sans-serif;
   font-size: 11px;
   letter-spacing: 0.05em;
   font-weight: 500;
@@ -58,6 +58,12 @@
   top: 50%;
   margin-top: -301px;
   z-index: 1;
+  transition: opacity 1s ease;
+}
+
+.side-square.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .left-square {
@@ -79,7 +85,7 @@
 .square-border {
   width: 100%;
   height: 100%;
-  border: 2px dotted #A0A4AB;
+  border: 2px dotted #a0a4ab;
 }
 
 .side-button {
@@ -88,13 +94,13 @@
   align-items: center;
   gap: 12px;
   white-space: nowrap;
-  font-family: 'Roobert TRIAL', sans-serif;
+  font-family: "Roobert TRIAL", sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #1A1B1C;
+  color: #1a1b1c;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -136,38 +142,69 @@
   transform: rotate(-45deg);
 }
 
-.left-button .button-arrow {
-  transform: rotate(-45deg);
-}
-
-.right-button .button-arrow {
-  transform: rotate(-45deg);
-}
-
 .button-text {
-  color: #1A1B1C;
+  color: #1a1b1c;
 }
 
-.center-content {
+.text-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
   z-index: 10;
+  transition: all 1s ease;
+}
+
+.title-wrapper {
+  display: block;
+  transition: transform 1s ease;
 }
 
 .main-title {
-  font-family: 'Roobert TRIAL', sans-serif;
+  font-family: "Roobert TRIAL", sans-serif;
   font-weight: 300;
   font-size: 128px;
   line-height: 120px;
   letter-spacing: -0.07em;
   color: #000000;
   margin: 0;
-  text-align: center;
   opacity: 0;
   animation: fadeIn 8s ease-out forwards;
+  text-align: center;
+  transition: all 3s ease;
+}
+
+.title-inner {
+  display: inline-block;
+  transition: transform 1s ease;
+}
+
+/* Hover LEFT button - text slides RIGHT and aligns RIGHT */
+.text-container.left {
+  left: 40%;
+  transform: translate(0, -50%);
+}
+
+.text-container.left .main-title {
+  text-align: right;
+}
+
+.text-container.left .title-inner {
+  transform: translateX(30px);
+}
+
+/* Hover RIGHT button - text slides LEFT and aligns LEFT */
+.text-container.right {
+  left: 55%;
+  transform: translate(-100%, -50%);
+}
+
+.text-container.right .main-title {
+  text-align: left;
+}
+
+.text-container.right .title-inner {
+  transform: translateX(-30px);
 }
 
 .bottom-text {
@@ -178,7 +215,7 @@
 }
 
 .bottom-text p {
-  font-family: 'Roobert TRIAL', sans-serif;
+  font-family: "Roobert TRIAL", sans-serif;
   font-size: 11px;
   letter-spacing: 0.05em;
   line-height: 1.6;
@@ -189,12 +226,12 @@
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -202,17 +239,17 @@
     display: none;
   }
 }
-  
+
 @media (max-width: 768px) {
   .hero {
     padding: 1.5rem;
   }
-  
+
   .bottom-text {
     left: 1.5rem;
     right: 1.5rem;
   }
-  
+
   .bottom-text p {
     font-size: 10px;
   }
