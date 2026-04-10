@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Hero.css";
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   const [hoverState, setHoverState] = useState("center");
@@ -38,7 +39,7 @@ export default function Hero() {
         <div className="square-inner">
           <div className="square-border"></div>
         </div>
-        <button
+        <Link to="/testing"
           className="side-button right-button"
           onMouseEnter={() => setHoverState("right")}
           onMouseLeave={() => setHoverState("center")}
@@ -47,7 +48,7 @@ export default function Hero() {
           <div className="button-diamond">
             <span className="button-arrow">▶</span>
           </div>
-        </button>
+        </Link>
       </div>
 
       <div className={`text-container ${hoverState}`}>
