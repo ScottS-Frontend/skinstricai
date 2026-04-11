@@ -1,26 +1,25 @@
 import React, { useState } from "react";
 import "./Hero.css";
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
+import diamondLarge from '../../assets/images/diamond-large.png';
 
 export default function Hero() {
   const [hoverState, setHoverState] = useState("center");
 
   return (
     <div className="hero">
-      <div className="top-nav">
-        <div className="logo">
-          SKINSTRIC <span className="bracket">[</span> INTRO{" "}
-          <span className="bracket">]</span>
-        </div>
-        <button className="enter-code-btn">ENTER CODE</button>
-      </div>
+      <Header />
 
+      {/* Left Diamond */}
       <div
-        className={`side-square left-square ${hoverState === "right" ? "hidden" : ""}`}
+        className={`side-diamond left-diamond ${hoverState === "right" ? "hidden" : ""}`}
       >
-        <div className="square-inner">
-          <div className="square-border"></div>
-        </div>
+        <img 
+          src={diamondLarge} 
+          alt="Left diamond" 
+          className="diamond-img"
+        />
         <button
           className="side-button left-button"
           onMouseEnter={() => setHoverState("left")}
@@ -33,12 +32,15 @@ export default function Hero() {
         </button>
       </div>
 
+      {/* Right Diamond */}
       <div
-        className={`side-square right-square ${hoverState === "left" ? "hidden" : ""}`}
+        className={`side-diamond right-diamond ${hoverState === "left" ? "hidden" : ""}`}
       >
-        <div className="square-inner">
-          <div className="square-border"></div>
-        </div>
+        <img 
+          src={diamondLarge} 
+          alt="Right diamond" 
+          className="diamond-img"
+        />
         <Link to="/testing"
           className="side-button right-button"
           onMouseEnter={() => setHoverState("right")}
@@ -52,12 +54,12 @@ export default function Hero() {
       </div>
 
       <div className={`text-container ${hoverState}`}>
-  <div className="title-wrapper">
-    <h1 className="main-title">
-      <span className="title-inner">Sophisticated<br />skincare</span>
-    </h1>
-  </div>
-</div>
+        <div className="title-wrapper">
+          <h1 className="main-title">
+            <span className="title-inner">Sophisticated<br />skincare</span>
+          </h1>
+        </div>
+      </div>
 
       <div className="bottom-text">
         <p>

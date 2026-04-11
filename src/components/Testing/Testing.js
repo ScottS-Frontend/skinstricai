@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Testing.css';
 import ThreeDiamonds from '../ThreeDiamonds/ThreeDiamonds';
+import Header from '../Header/Header';
 
 export default function Testing() {
   const [step, setStep] = useState(1);
@@ -13,11 +14,9 @@ export default function Testing() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   
-  // Refs for auto-focusing inputs
   const nameInputRef = useRef(null);
   const cityInputRef = useRef(null);
 
-  // Auto-focus input when step changes
   useEffect(() => {
     if (step === 1 && !isComplete) {
       setTimeout(() => nameInputRef.current?.focus(), 100);
@@ -92,7 +91,6 @@ export default function Testing() {
     }
   };
 
-  // Trigger proceed button animation after isComplete is set
   useEffect(() => {
     if (isComplete) {
       const timer = setTimeout(() => {
@@ -108,17 +106,10 @@ export default function Testing() {
 
   return (
     <div className="testing-page">
-      <div className="top-nav">
-        <div className="logo-section">
-          <div className="logo">
-            SKINSTRIC <span className="bracket">[</span> INTRO <span className="bracket">]</span>
-          </div>
-          <h2 className="analysis-subtitle">TO START ANALYSIS</h2>
-        </div>
-        <button className="enter-code-btn">
-          ENTER CODE
-        </button>
-      </div>
+      <Header />
+      
+      {/* Subtitle moved here - outside Header */}
+      <h2 className="page-subtitle">TO START ANALYSIS</h2>
 
       <div className="analysis-content">
         {!isComplete && step === 1 && (
@@ -151,7 +142,7 @@ export default function Testing() {
                 name="city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="Your City Name"
+                placeholder="Where are you from?"
                 autoComplete="off"
                 className="analysis-input"
                 autoFocus
@@ -162,10 +153,15 @@ export default function Testing() {
         )}
 
         {!isComplete && step === 3 && isProcessing && (
-          <div className="processing-message">
-            <p>Processing Submission ...</p>
-          </div>
-        )}
+  <div className="processing-message">
+    <p className="processing-text">Processing submission</p>
+    <p className="processing-dots">
+      <span className="dot">.</span>
+      <span className="dot">.</span>
+      <span className="dot">.</span>
+    </p>
+  </div>
+)}
 
         {isComplete && (
           <div className="thank-you-message">
@@ -179,7 +175,6 @@ export default function Testing() {
 
       <ThreeDiamonds />
 
-      {/* Back Button - Bottom Left */}
       <div className="back-button">
         <Link to="/" className="back-link-custom">
           <div className="button-diamond">
@@ -189,7 +184,6 @@ export default function Testing() {
         </Link>
       </div>
 
-      {/* Proceed Button - Bottom Right with animation */}
       {showProceed && (
         <button className="proceed-button" onClick={handleProceed}>
           <span className="button-text">PROCEED</span>
