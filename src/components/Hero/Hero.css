@@ -125,7 +125,7 @@
   color: #000000;
   margin: 0;
   opacity: 0;
-  animation: fadeIn 8s ease-out forwards;
+  animation: fadeIn 5s ease-out forwards;
   text-align: center;
   transition: all 3s ease;
 }

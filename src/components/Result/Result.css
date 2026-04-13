@@ -1,0 +1,513 @@
+.result-page {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.page-subtitle {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  margin: 0;
+  position: absolute;
+  top: 56px;
+  left: 32px;
+  z-index: 10;
+}
+
+/* Preview Box - Top Right */
+.preview-box {
+  position: absolute;
+  top: 56px;
+  right: 32px;
+  z-index: 10;
+}
+
+.preview-label {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  margin: 0 0 8px;
+}
+
+.preview-area {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+}
+
+/* Options Container */
+.options-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15rem;           /* Increased from 10rem for more space */
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 2rem;
+}
+
+/* Option Item */
+.option-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  width: 500px;
+  height: 500px;
+}
+
+.option-item:hover,
+.option-item.selected {
+  opacity: 1;
+}
+
+/* Diamond Area */
+.diamond-area {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* KEEP YOUR DIAMOND SIZES */
+.diamond-area .three-diamonds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.diamond-area .diamond-img.large {
+  width: 500px;
+  height: 500px;
+}
+
+.diamond-area .diamond-img.medium {
+  width: 420px;
+  height: 420px;
+}
+
+.diamond-area .diamond-img.small {
+  width: 340px;
+  height: 340px;
+}
+
+/* KEEP YOUR BRIGHTNESS/CONTRAST */
+.diamond-area .diamond-img {
+  filter: brightness(0.7) contrast(1.2);
+}
+
+/* Center Icon - KEEP YOUR SIZES */
+.center-icon-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.center-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transition: transform 0.7s ease-in-out;
+}
+
+/* Camera Modal Overlay */
+.camera-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Camera Modal Box */
+.camera-modal {
+  background: #1a1a1a;
+  padding: 24px 32px;
+  min-width: 320px;
+  text-align: center;
+}
+
+.camera-modal-title {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+}
+
+/* Modal Buttons Container */
+.camera-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border-top: 1px solid #333;
+  padding-top: 16px;
+}
+
+/* Modal Buttons */
+.modal-btn {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  padding: 8px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.deny-btn {
+  color: #888888;
+}
+
+.deny-btn:hover {
+  color: #ffffff;
+}
+
+.allow-btn {
+  color: #ffffff;
+  border-left: 1px solid #333;
+}
+
+.allow-btn:hover {
+  color: #cccccc;
+}
+
+/* Camera Preview Video */
+.camera-preview-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Preview Image */
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .center-icon {
+    width: 136px;
+    height: 136px;
+  }
+}
+
+.option-item:hover .center-icon {
+  transform: scale(1.08);
+}
+
+/* Scan Line + Text - REPOSITIONED */
+.scan-text-group {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+  width: 300px;         /* Fixed width for positioning */
+}
+
+/* Camera: Scan line from camera edge to upper right */
+.camera-scan-group {
+  top: 150px;            /* Above center */
+  left: 300px;          /* Right edge of diamond (500px/2 + offset) */
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.scan-line-img {
+  width: 55px;
+  height: 59px;
+  object-fit: contain;
+  margin-left: -10px;   /* Touch the diamond edge */
+  margin-top: 0; /* Connect to text */
+  transform: rotate(-2deg);
+}
+
+/* Camera text - positioned at end of scan line */
+.camera-text-position {
+  margin-left: 50px;    /* At end of scan line */
+  margin-top: -75px;    /* Align with scan line angle */
+  text-align: left;
+}
+
+/* Gallery: Scan line from camera edge to lower left */
+.gallery-scan-group {
+  bottom: 120px;         /* Below center */
+  right: 320px;         /* Left edge of diamond */
+  flex-direction: column;
+  align-items: flex-end;
+  
+}
+
+.gallery-scan-line {
+  width: 50px;
+  height: 59px;
+  object-fit: contain;
+  transform: rotate(-2deg); /* Flip horizontally */
+  margin-right: -27px;   /* Touch the diamond edge */
+  margin-bottom: 15px;
+}
+
+/* Gallery text - positioned at end of scan line */
+.gallery-text-position {
+  margin-right: 20px;   /* At end of scan line */
+  margin-top: -20px;
+  text-align: right;
+}
+
+/* Text Styles */
+.option-label {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  margin: 0;
+}
+
+.option-sublabel {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #666666;
+  margin: 0;
+}
+
+/* Navigation Buttons */
+.back-button {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  z-index: 10;
+}
+
+.back-link-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.back-link-custom .button-diamond {
+  order: 1;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000000;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-link-custom:hover .button-diamond {
+  transform: rotate(45deg) scale(1.1);
+}
+
+.back-link-custom .button-arrow {
+  font-size: 10px;
+  color: #000000;
+  display: block;
+  line-height: 1;
+}
+
+.back-link-custom .button-text {
+  order: 2;
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1a1b1c;
+}
+
+.proceed-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1a1b1c;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.3s ease;
+}
+
+.proceed-button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.proceed-button.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.proceed-button .button-text {
+  order: 1;
+}
+
+.proceed-button .button-diamond {
+  order: 2;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000000;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proceed-button:hover .button-diamond {
+  transform: rotate(45deg) scale(1.1);
+}
+
+.proceed-button .button-arrow {
+  font-size: 10px;
+  color: #000000;
+  display: block;
+  line-height: 1;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .options-container {
+    gap: 15rem;
+  }
+  
+  .option-item {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .diamond-area {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .diamond-area .diamond-img.large {
+    width: 400px;
+    height: 400px;
+  }
+
+  .diamond-area .diamond-img.medium {
+    width: 340px;
+    height: 340px;
+  }
+
+  .diamond-area .diamond-img.small {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .camera-scan-group {
+    top: 120px;
+    left: 340px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .gallery-scan-group {
+    right: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .options-container {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 0 2rem;
+  }
+  
+  .preview-box {
+    display: none;
+  }
+  
+  .scan-text-group {
+    display: none;
+  }
+  
+  .option-text {
+    position: relative;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .back-button {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+  
+  .proceed-button {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}

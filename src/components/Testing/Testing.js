@@ -101,14 +101,13 @@ export default function Testing() {
   }, [isComplete]);
 
   const handleProceed = () => {
-    navigate('/next-step');
+    navigate('/result');
   };
 
   return (
     <div className="testing-page">
       <Header />
       
-      {/* Subtitle moved here - outside Header */}
       <h2 className="page-subtitle">TO START ANALYSIS</h2>
 
       <div className="analysis-content">

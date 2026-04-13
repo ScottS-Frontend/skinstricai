@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Hero.css";
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
-import diamondLarge from '../../assets/images/diamond-large.png';
+import diamondSmall from '../../assets/images/diamond-small.png';
 
 export default function Hero() {
   const [hoverState, setHoverState] = useState("center");
@@ -16,7 +16,7 @@ export default function Hero() {
         className={`side-diamond left-diamond ${hoverState === "right" ? "hidden" : ""}`}
       >
         <img 
-          src={diamondLarge} 
+          src={diamondSmall} 
           alt="Left diamond" 
           className="diamond-img"
         />
@@ -37,7 +37,7 @@ export default function Hero() {
         className={`side-diamond right-diamond ${hoverState === "left" ? "hidden" : ""}`}
       >
         <img 
-          src={diamondLarge} 
+          src={diamondSmall} 
           alt="Right diamond" 
           className="diamond-img"
         />
