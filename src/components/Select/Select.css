@@ -1,0 +1,337 @@
+.select-page {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Left Side Text */
+.analysis-text {
+  position: absolute;
+  top: 56px;
+  left: 32px;
+  z-index: 10;
+}
+
+.analysis-title {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  margin: 0 0 16px 0;
+}
+
+.analysis-subtitle {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  margin: 0 0 4px 0;
+}
+
+.analysis-instruction {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  margin: 0;
+}
+
+/* Diamond Navigation - Center */
+.diamond-navigation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.hover-diamond-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+  filter: brightness(0.7);
+  transform: translate(-50%, -50%) rotate(90deg) scale(0.3);
+  transform-origin: center center;
+  transition: all 0.8s;
+}
+
+.hover-diamond-img.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(90deg) scale(1);
+}
+
+/* MUCH larger sizes for the hover images */
+.hover-diamond-img.small {
+  width: 500px;
+  height: 500px;
+}
+
+.hover-diamond-img.medium {
+  width: 550px;
+  height: 550px;
+}
+
+.hover-diamond-img.large {
+  width: 600px;
+  height: 600px;
+}
+
+/* Show image when visible class is applied */
+.hover-diamond-img.visible {
+  opacity: 1;
+}
+
+.diamond-row {
+  display: flex;
+  gap: 4px;
+}
+
+.diamond-item {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.diamond-item:hover {
+  opacity: 0.8;
+}
+
+/* Darker gray on hover for ALL diamonds */
+.diamond-item:hover .diamond-shape {
+  background: #D1D5DB;
+}
+
+/* Keep top diamond's default darker color */
+.top-diamond .diamond-shape {
+  background: #E5E7EB;
+}
+
+.top-diamond:hover .diamond-shape {
+  background: #D1D5DB;
+}
+
+/* Diamond shapes */
+.diamond-shape {
+  width: 140px;
+  height: 140px;
+  background: #F3F4F6;
+  transform: rotate(45deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  transition: background 0.3s ease;
+  z-index: 2;
+}
+
+/* Diamond Labels */
+.diamond-label {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  text-align: center;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.diamond-label-container {
+  transform: rotate(-45deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Separated diamond buttons - -40px overlap */
+.top-diamond {
+  margin-bottom: -40px;
+}
+
+.bottom-diamond {
+  margin-top: -40px;
+}
+
+.left-diamond {
+  margin-right: -40px;
+}
+
+.right-diamond {
+  margin-left: -40px;
+}
+
+/* Back Button - Bottom Left */
+.select-back-button {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  z-index: 10;
+}
+
+.select-back-button .back-link-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.select-back-button .button-diamond {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000000;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-back-button .button-arrow {
+  font-size: 10px;
+  color: #000000;
+  display: block;
+  line-height: 1;
+}
+
+.select-back-button .button-text {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1a1b1c;
+}
+
+/* Proceed Button - Bottom Right */
+.select-proceed-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1a1b1c;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.3s ease;
+}
+
+.select-proceed-button:hover {
+  opacity: 0.7;
+}
+
+.select-proceed-button .button-text {
+  order: 1;
+}
+
+.select-proceed-button .button-diamond {
+  order: 2;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000000;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.select-proceed-button:hover .button-diamond {
+  transform: rotate(45deg) scale(1.1);
+}
+
+.select-proceed-button .button-arrow {
+  font-size: 10px;
+  color: #000000;
+  display: block;
+  line-height: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .diamond-shape {
+    width: 100px;
+    height: 100px;
+  }
+
+  .diamond-label {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .top-diamond {
+    margin-bottom: -30px;
+  }
+
+  .bottom-diamond {
+    margin-top: -30px;
+  }
+
+  .left-diamond {
+    margin-right: -30px;
+  }
+
+  .right-diamond {
+    margin-left: -30px;
+  }
+
+  .analysis-text {
+    top: 80px;
+    left: 16px;
+  }
+
+  .hover-diamond-img.small {
+    width: 500px;
+    height: 500px;
+  }
+
+  .hover-diamond-img.medium {
+    width: 600px;
+    height: 600px;
+  }
+
+  .hover-diamond-img.large {
+    width: 700px;
+    height: 700px;
+  }
+}
