@@ -13,23 +13,8 @@ export default function Select() {
 
   const { image, demographics, actualDemographics } = location.state || {};
 
-  const handleDiamondClick = (section) => {
-    switch(section) {
-      case 'demographics':
-        navigate('/demographics', { state: { image, demographics, actualDemographics } });
-        break;
-      case 'cosmetic-concerns':
-        navigate('/cosmetic-concerns');
-        break;
-      case 'skin-type':
-        navigate('/skin-type');
-        break;
-      case 'weather':
-        navigate('/weather');
-        break;
-      default:
-        break;
-    }
+  const handleDemographicsClick = () => {
+    navigate('/summary', { state: { image, demographics, actualDemographics } });
   };
 
   return (
@@ -43,7 +28,6 @@ export default function Select() {
       </div>
 
       <div className="diamond-navigation">
-        {/* Individual hover diamond images */}
         <img 
           src={diamondSmall} 
           alt="" 
@@ -61,10 +45,10 @@ export default function Select() {
         />
 
         <div 
-          className="diamond-item top-diamond"
+          className="diamond-item top-diamond active"
           onMouseEnter={() => setHoveredSize('small')}
           onMouseLeave={() => setHoveredSize(null)}
-          onClick={() => handleDiamondClick('demographics')}
+          onClick={handleDemographicsClick}
         >
           <div className="diamond-shape">
             <div className="diamond-label-container">
@@ -75,10 +59,9 @@ export default function Select() {
 
         <div className="diamond-row">
           <div 
-            className="diamond-item left-diamond"
+            className="diamond-item left-diamond disabled"
             onMouseEnter={() => setHoveredSize('medium')}
             onMouseLeave={() => setHoveredSize(null)}
-            onClick={() => handleDiamondClick('cosmetic-concerns')}
           >
             <div className="diamond-shape">
               <div className="diamond-label-container">
@@ -89,10 +72,9 @@ export default function Select() {
           </div>
 
           <div 
-            className="diamond-item right-diamond"
+            className="diamond-item right-diamond disabled"
             onMouseEnter={() => setHoveredSize('medium')}
             onMouseLeave={() => setHoveredSize(null)}
-            onClick={() => handleDiamondClick('skin-type')}
           >
             <div className="diamond-shape">
               <div className="diamond-label-container">
@@ -103,10 +85,9 @@ export default function Select() {
         </div>
 
         <div 
-          className="diamond-item bottom-diamond"
+          className="diamond-item bottom-diamond disabled"
           onMouseEnter={() => setHoveredSize('large')}
           onMouseLeave={() => setHoveredSize(null)}
-          onClick={() => handleDiamondClick('weather')}
         >
           <div className="diamond-shape">
             <div className="diamond-label-container">

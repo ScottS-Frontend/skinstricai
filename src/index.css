@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  overflow-y: auto;
 }
 
 body {
@@ -16,9 +18,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #ffffff;
   color: #000000;
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
 }
 
 ::selection {

@@ -791,6 +791,68 @@
   text-transform: uppercase;
 }
 
+/* Success Modal Overlay */
+.success-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+
+/* Success Modal Box */
+.success-modal {
+  background: #ffffff;
+  padding: 32px 48px;
+  min-width: 320px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.success-modal-title {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1a1b1c;
+  margin: 0 0 16px 0;
+}
+
+.success-modal-message {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666666;
+  margin: 0 0 24px 0;
+}
+
+.success-modal-btn {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #1a1b1c;
+  border: none;
+  padding: 12px 32px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.success-modal-btn:hover {
+  opacity: 0.8;
+}
+
 /* Error Banner */
 .error-banner {
   position: fixed;

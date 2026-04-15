@@ -153,7 +153,7 @@ export default function Testing() {
 
         {!isComplete && step === 3 && isProcessing && (
   <div className="processing-message">
-    <p className="processing-text">Processing submission</p>
+    <p className="processing-text">Processing Submission...</p>
     <p className="processing-dots">
       <span className="dot">.</span>
       <span className="dot">.</span>

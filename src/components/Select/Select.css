@@ -118,6 +118,16 @@
   opacity: 0.8;
 }
 
+.diamond-item.active {
+  cursor: pointer;
+}
+
+.diamond-item.disabled {
+  cursor: not-allowed;
+}
+
+
+
 /* Darker gray on hover for ALL diamonds */
 .diamond-item:hover .diamond-shape {
   background: #D1D5DB;

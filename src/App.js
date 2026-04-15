@@ -5,6 +5,7 @@ import Hero from './components/Hero/Hero';
 import Testing from './components/Testing/Testing';
 import Result from './components/Result/Result'
 import Select from './components/Select/Select'
+import Summary from './components/Summary/Summary'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/testing" element={<Testing />} />
           <Route path="result" element={<Result />} />
           <Route path="/select" element={<Select />} />
+          <Route path="/summary" element={<Summary />} />
         </Routes>
       </div>
     </Router>
