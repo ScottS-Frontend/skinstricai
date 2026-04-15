@@ -614,16 +614,7 @@ export default function Result() {
         </Link>
       </div>
 
-      <button
-        className={`proceed-button ${selectedOption ? "active" : "disabled"}`}
-        onClick={handleProceed}
-        disabled={!selectedOption}
-      >
-        <span className="button-text">PROCEED</span>
-        <div className="button-diamond">
-          <span className="button-arrow">▶</span>
-        </div>
-      </button>
+      
     </div>
   );
 }

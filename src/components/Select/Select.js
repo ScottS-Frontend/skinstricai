@@ -115,7 +115,7 @@ export default function Select() {
         className="select-proceed-button"
         onClick={handleProceedClick}  // CHANGED: Use the new handler
       >
-        <span className="button-text">PROCEED</span>
+        <span className="button-text">GET SUMMARY</span>
         <div className="button-diamond">
           <span className="button-arrow">▶</span>
         </div>

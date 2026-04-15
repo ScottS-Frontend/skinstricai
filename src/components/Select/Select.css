@@ -81,7 +81,6 @@
   transform: translate(-50%, -50%) rotate(90deg) scale(1);
 }
 
-/* MUCH larger sizes for the hover images */
 .hover-diamond-img.small {
   width: 500px;
   height: 500px;

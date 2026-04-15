@@ -288,7 +288,7 @@
   justify-content: space-between;
   width: 100%;
   max-width: 1400px;
-  margin: 24px auto 32px;
+  margin: 0px auto 32px;
   padding: 0 32px;
   position: relative;
   z-index: 10;
@@ -317,28 +317,7 @@
   text-align: center;
 }
 
-/* Home Button - Just diamond + text, no box */
-.summary-home-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: "Roobert TRIAL", sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: #1a1b1c;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: opacity 0.3s ease;
-}
 
-.summary-home-button:hover {
-  opacity: 0.7;
-}
 
 /* Button diamond styles */
 .button-diamond {
@@ -372,6 +351,53 @@
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #1a1b1c;
+}
+
+/* Container for the two new buttons */
+.summary-action-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* RESET button - white square with black text */
+.reset-button {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1a1b1c;
+  background: #ffffff;
+  border: 1px solid #1a1b1c;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.reset-button:hover {
+  opacity: 0.7;
+}
+
+/* CONFIRM button - black square with white text */
+.confirm-button {
+  font-family: "Roobert TRIAL", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #1a1b1c;
+  border: 1px solid #1a1b1c;
+  padding: 16px 32px;
+  cursor: not-allowed;
+  transition: opacity 0.3s ease;
+}
+
+.confirm-button:hover {
+  opacity: 0.8;
 }
 
 /* Responsive */

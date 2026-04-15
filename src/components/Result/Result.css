@@ -977,69 +977,6 @@
   color: #1a1b1c;
 }
 
-.proceed-button {
-  position: absolute;
-  bottom: 2rem;
-  right: 3rem;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  white-space: nowrap;
-  font-family: "Roobert TRIAL", sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: #1a1b1c;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-  transition: opacity 0.3s ease;
-}
-
-.proceed-button.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.proceed-button.active {
-  opacity: 1;
-  cursor: pointer;
-}
-
-.proceed-button .button-text {
-  order: 1;
-}
-
-.proceed-button .button-diamond {
-  order: 2;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #000000;
-  transform: rotate(45deg);
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.proceed-button:hover .button-diamond {
-  transform: rotate(45deg) scale(1.1);
-}
-
-.proceed-button .button-arrow {
-  font-size: 10px;
-  color: #000000;
-  display: block;
-  line-height: 1;
-}
-
 /* Responsive */
 @media (max-width: 1200px) {
   .options-container {
@@ -1109,13 +1046,15 @@
     left: 1.5rem;
   }
 
-  .proceed-button {
-    bottom: 1.5rem;
-    right: 1.5rem;
+  .demographics-panel {
+    width: 100%;
+    padding-top: 60px;
   }
-}
 
-@media (min-width: 768px) {
+  .result-page:has(.demographics-panel) .options-container {
+    margin-left: 0;
+  }
+
   .center-icon {
     width: 136px;
     height: 136px;
@@ -1126,18 +1065,10 @@
   transform: scale(1.08);
 }
 
-/* Adjust main content when demographics panel is open */
-.result-page:has(.demographics-panel) .options-container {
-  margin-left: 320px;
-}
-
-@media (max-width: 768px) {
-  .demographics-panel {
-    width: 100%;
-    padding-top: 60px;
-  }
-
+/* Adjust main content when demographics panel is open - only for desktop */
+@media (min-width: 769px) {
   .result-page:has(.demographics-panel) .options-container {
-    margin-left: 0;
+    margin-left: 320px;
   }
 }
+  

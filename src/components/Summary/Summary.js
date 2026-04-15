@@ -133,11 +133,6 @@ export default function Summary() {
     });
   };
 
-  // Navigate to hero/home page
-  const handleHome = () => {
-    navigate("/");
-  };
-
   if (!demographics) {
     return (
       <div className="summary-page">
@@ -151,6 +146,10 @@ export default function Summary() {
       </div>
     );
   }
+
+  const handleReset = () => {
+  navigate("/result");
+};
 
   const raceData = sortAndFormatScores(demographics.race);
   const ageData = sortAndFormatScores(demographics.age);
@@ -312,12 +311,17 @@ export default function Summary() {
           If A.I. estimate is wrong, select the correct one.
         </p>
 
-        <button className="summary-home-button" onClick={handleHome}>
-          <span className="button-text">HOME</span>
-          <div className="button-diamond">
-            <span className="button-arrow">▶</span>
-          </div>
-        </button>
+        <div className="summary-action-buttons">
+  <button className="reset-button" onClick={handleReset}>
+    RESET
+  </button>
+  <button className="confirm-button">
+    CONFIRM
+  </button>
+</div>
+
+
+
       </div>
     </div>
   );
