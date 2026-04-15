@@ -17,6 +17,11 @@ export default function Select() {
     navigate('/summary', { state: { image, demographics, actualDemographics } });
   };
 
+  // NEW: Handle proceed button with state
+  const handleProceedClick = () => {
+    navigate('/summary', { state: { image, demographics, actualDemographics } });
+  };
+
   return (
     <div className="select-page">
       <Header />
@@ -108,7 +113,7 @@ export default function Select() {
 
       <button 
         className="select-proceed-button"
-        onClick={() => navigate('/analysis-summary')}
+        onClick={handleProceedClick}  // CHANGED: Use the new handler
       >
         <span className="button-text">PROCEED</span>
         <div className="button-diamond">

@@ -117,6 +117,7 @@ export default function Result() {
 
       if (data.data) {
         setDemographics(data.data);
+        await new Promise(resolve => setTimeout(resolve, 5000));
         return true;
       } else {
         throw new Error("Invalid API response format");
@@ -132,43 +133,42 @@ export default function Result() {
   };
 
   const handleFileChange = async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-  if (!file.type.startsWith("image/")) {
-    alert("Please select a valid image file");
-    return;
-  }
+    if (!file.type.startsWith("image/")) {
+      alert("Please select a valid image file");
+      return;
+    }
 
-  if (file.size > 5 * 1024 * 1024) {
-    alert("Image is too large. Please select an image under 5MB.");
-    return;
-  }
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image is too large. Please select an image under 5MB.");
+      return;
+    }
 
-  const imageUrl = URL.createObjectURL(file);
-  setSelectedImage(imageUrl);
+    const imageUrl = URL.createObjectURL(file);
+    setSelectedImage(imageUrl);
 
-  try {
-    let base64String;
     try {
-      base64String = await convertToBase64(file);
-    } catch (err) {
-      base64String = await convertToBase64FileReader(file);
-    }
+      let base64String;
+      try {
+        base64String = await convertToBase64(file);
+      } catch (err) {
+        base64String = await convertToBase64FileReader(file);
+      }
 
-    const success = await sendImageToAPI(base64String);
-    
-    // Add delay and show success modal for gallery too
-    if (success) {
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      setShowSuccessModal(true);
+      const success = await sendImageToAPI(base64String);
+      
+      // Show success modal after analysis completes
+      if (success) {
+        setShowSuccessModal(true);
+      }
+    } catch (error) {
+      console.error("Error processing image:", error);
+      setError(error.message);
+      alert(`Error processing image: ${error.message}`);
     }
-  } catch (error) {
-    console.error("Error processing image:", error);
-    setError(error.message);
-    alert(`Error processing image: ${error.message}`);
-  }
-};
+  };
 
   const handleDeny = () => {
     setShowCameraModal(false);
@@ -178,6 +178,8 @@ export default function Result() {
   const handleAllow = async () => {
     setShowCameraModal(false);
     setIsSettingUpCamera(true);
+
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -238,6 +240,7 @@ export default function Result() {
     stopCameraStream();
     setSelectedOption(null);
     setSelectedImage(null);
+    setShowPhotoPreview(false);
   };
 
   const handleRetake = () => {
@@ -247,34 +250,32 @@ export default function Result() {
     handleAllow();
   };
 
- const handleUseThisPhoto = async () => {
-  if (!capturedImage) return;
+  const handleUseThisPhoto = async () => {
+    if (!capturedImage) return;
 
-  setShowPhotoPreview(false);
-  setIsAnalyzing(true);
+    setShowPhotoPreview(false);
+    setIsAnalyzing(true);
 
-  const success = await sendImageToAPI(capturedImage.base64);
+    const success = await sendImageToAPI(capturedImage.base64);
 
-  await new Promise(resolve => setTimeout(resolve, 4000));
+    setIsAnalyzing(false);
 
-  setIsAnalyzing(false);
+    if (success) {
+      // Show success modal instead of navigating immediately
+      setShowSuccessModal(true);
+    }
+  };
 
-  if (success) {
-    // Show success modal instead of navigating immediately
-    setShowSuccessModal(true);
-  }
-};
-
-const handleSuccessOk = () => {
-  setShowSuccessModal(false);
-  navigate("/select", {
-    state: {
-      image: capturedImage?.url || selectedImage,
-      demographics: demographics,
-      actualDemographics: actualDemographics,
-    },
-  });
-};
+  const handleSuccessOk = () => {
+    setShowSuccessModal(false);
+    navigate("/select", {
+      state: {
+        image: capturedImage?.url || selectedImage,
+        demographics: demographics,
+        actualDemographics: actualDemographics,
+      },
+    });
+  };
 
   const sortAndFormatScores = (categoryData) => {
     if (!categoryData) return [];
@@ -296,7 +297,7 @@ const handleSuccessOk = () => {
 
   const handleProceed = () => {
     if (selectedOption) {
-      navigate("/analysis");
+      navigate("/select");
     }
   };
 
@@ -532,39 +533,30 @@ const handleSuccessOk = () => {
         </div>
       )}
 
-      {/* Analyzing Overlay */}
-      {isAnalyzing && (
-        <div className="analyzing-overlay">
-          <div className="analyzing-box">
-            <p className="analyzing-text">PREPARING YOUR ANALYSIS</p>
-            <div className="bouncing-dots">
-              <span className="dot"></span>
-              <span className="dot"></span>
-              <span className="dot"></span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Loading Overlay */}
+      {/* Loading Overlay - Spinning 3 Diamonds with "PREPARING YOUR ANALYSIS" */}
       {loading && (
-        <div className="loading-overlay">
-          <div className="loading-spinner">PREPARING YOUR ANALYSIS</div>
-        </div>
-      )}
-
-      {/* Success Modal */}
-{showSuccessModal && (
-  <div className="success-modal-overlay">
-    <div className="success-modal">
-      <h3 className="success-modal-title">SKINSTRIC</h3>
-      <p className="success-modal-message">Image analyzed successfully!</p>
-      <button className="success-modal-btn" onClick={handleSuccessOk}>
-        OK
-      </button>
+  <div className="loading-overlay">
+    <div className="loading-spinner-container">
+      <div className="loading-diamonds">
+        <ThreeDiamonds />
+      </div>
+      <p className="loading-text-centered">PREPARING YOUR ANALYSIS</p>
     </div>
   </div>
 )}
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="success-modal-overlay">
+          <div className="success-modal">
+            <h3 className="success-modal-title">SKINSTRIC SAYS:</h3>
+            <p className="success-modal-message">Image analyzed successfully!</p>
+            <button className="success-modal-btn" onClick={handleSuccessOk}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="options-container">
         {/* Camera Option - Left */}
