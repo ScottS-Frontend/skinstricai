@@ -148,7 +148,7 @@ export default function Summary() {
   }
 
   const handleReset = () => {
-  navigate("/result");
+  navigate("/");
 };
 
   const raceData = sortAndFormatScores(demographics.race);
@@ -198,51 +198,62 @@ export default function Summary() {
           </div>
         </div>
 
-        {/* Center - Large Display with Progress Ring */}
-        <div className="summary-center">
-          <h2 className="center-title">
-            {currentData.title}
-            {currentView === "age" && <span className="age-suffix"> y.o.</span>}
-          </h2>
+        {/* Center - Large Display with User Image and Progress Ring */}
+<div className="summary-center">
+  <h2 className="center-title">
+    {currentData.title}
+    {currentView === "age" && <span className="age-suffix"> y.o.</span>}
+  </h2>
 
-          <div className="progress-ring-container">
-            <svg
-              className="progress-ring"
-              width="280"
-              height="280"
-              viewBox="0 0 280 280"
-            >
-              {/* Background circle */}
-              <circle
-                className="progress-ring-bg"
-                cx="140"
-                cy="140"
-                r={radius}
-                fill="none"
-                stroke="#e0e0e0"
-                strokeWidth="8"
-              />
-              {/* Progress circle */}
-              <circle
-                className="progress-ring-fg"
-                cx="140"
-                cy="140"
-                r={radius}
-                fill="none"
-                stroke="#1a1b1c"
-                strokeWidth="8"
-                strokeDasharray={circumference}
-                strokeDashoffset={progressOffset}
-                strokeLinecap="round"
-                transform="rotate(-90 140 140)"
-                style={{ transition: "stroke-dashoffset 0.5s ease" }}
-              />
-            </svg>
-            <div className="progress-text">
-              <span className="progress-percentage">{currentData.score}%</span>
-            </div>
-          </div>
-        </div>
+  <div className="center-content-row">
+    {/* User's captured/uploaded image on the left */}
+    {image && (
+      <div className="user-image-container">
+        <img src={image} alt="Analyzed face" className="user-image" />
+      </div>
+    )}
+
+    {/* Progress ring on the right */}
+    <div className="progress-ring-container">
+      <svg
+        className="progress-ring"
+        width="280"
+        height="280"
+        viewBox="0 0 280 280"
+      >
+        {/* Background circle */}
+        <circle
+          className="progress-ring-bg"
+          cx="140"
+          cy="140"
+          r={radius}
+          fill="none"
+          stroke="#e0e0e0"
+          strokeWidth="8"
+        />
+        {/* Progress circle */}
+        <circle
+          className="progress-ring-fg"
+          cx="140"
+          cy="140"
+          r={radius}
+          fill="none"
+          stroke="#1a1b1c"
+          strokeWidth="8"
+          strokeDasharray={circumference}
+          strokeDashoffset={progressOffset}
+          strokeLinecap="round"
+          transform="rotate(-90 140 140)"
+          style={{ transition: "stroke-dashoffset 0.5s ease" }}
+        />
+      </svg>
+      <div className="progress-text">
+        <span className="progress-percentage">{currentData.score}%</span>
+      </div>
+    </div>
+  </div>
+</div>
+        
 
         {/* Right Panel - All Options List */}
         <div className="summary-options">

@@ -19,15 +19,13 @@ export default function Result() {
   const [capturedImage, setCapturedImage] = useState(null);
   const [showPhotoPreview, setShowPhotoPreview] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [demographics, setDemographics] = useState(null);
-  const [actualDemographics, setActualDemographics] = useState({
+  const [actualDemographics] = useState({
     race: null,
     age: null,
     gender: null,
   });
   const [loading, setLoading] = useState(false);
-  const [showDemographicsPanel, setShowDemographicsPanel] = useState(false);
   const [error, setError] = useState(null);
 
   const videoRef = useRef(null);
@@ -117,7 +115,7 @@ export default function Result() {
 
       if (data.data) {
         setDemographics(data.data);
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise((resolve) => setTimeout(resolve, 5000));
         return true;
       } else {
         throw new Error("Invalid API response format");
@@ -158,8 +156,7 @@ export default function Result() {
       }
 
       const success = await sendImageToAPI(base64String);
-      
-      // Show success modal after analysis completes
+
       if (success) {
         setShowSuccessModal(true);
       }
@@ -179,7 +176,7 @@ export default function Result() {
     setShowCameraModal(false);
     setIsSettingUpCamera(true);
 
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -254,14 +251,10 @@ export default function Result() {
     if (!capturedImage) return;
 
     setShowPhotoPreview(false);
-    setIsAnalyzing(true);
 
     const success = await sendImageToAPI(capturedImage.base64);
 
-    setIsAnalyzing(false);
-
     if (success) {
-      // Show success modal instead of navigating immediately
       setShowSuccessModal(true);
     }
   };
@@ -277,124 +270,12 @@ export default function Result() {
     });
   };
 
-  const sortAndFormatScores = (categoryData) => {
-    if (!categoryData) return [];
-
-    return Object.entries(categoryData)
-      .sort(([, a], [, b]) => b - a)
-      .map(([key, value]) => ({
-        label: key,
-        score: (value * 100).toFixed(2),
-      }));
-  };
-
-  const handleDemographicSelect = (category, value) => {
-    setActualDemographics((prev) => ({
-      ...prev,
-      [category]: value,
-    }));
-  };
-
-  const handleProceed = () => {
-    if (selectedOption) {
-      navigate("/select");
-    }
-  };
-
-  const renderDemographicsPanel = () => {
-    if (!showDemographicsPanel || !demographics) return null;
-
-    const raceScores = sortAndFormatScores(demographics.race);
-    const ageScores = sortAndFormatScores(demographics.age);
-    const genderScores = sortAndFormatScores(demographics.gender);
-
-    return (
-      <div className="demographics-panel">
-        <h3 className="demographics-title">AI PREDICTIONS</h3>
-        <p className="demographics-subtitle">
-          Click to select your actual attributes
-        </p>
-
-        <div className="demographic-section">
-          <h4 className="section-label">RACE</h4>
-          <div className="scores-list">
-            {raceScores.map(({ label, score }) => (
-              <button
-                key={label}
-                className={`score-item ${actualDemographics.race === label ? "selected-actual" : ""}`}
-                onClick={() => handleDemographicSelect("race", label)}
-              >
-                <span className="score-label">{label}</span>
-                <span className="score-value">{score}%</span>
-              </button>
-            ))}
-          </div>
-          {actualDemographics.race && (
-            <div className="actual-selection">
-              Your selection: <strong>{actualDemographics.race}</strong>
-            </div>
-          )}
-        </div>
-
-        <div className="demographic-section">
-          <h4 className="section-label">AGE</h4>
-          <div className="scores-list">
-            {ageScores.map(({ label, score }) => (
-              <button
-                key={label}
-                className={`score-item ${actualDemographics.age === label ? "selected-actual" : ""}`}
-                onClick={() => handleDemographicSelect("age", label)}
-              >
-                <span className="score-label">{label}</span>
-                <span className="score-value">{score}%</span>
-              </button>
-            ))}
-          </div>
-          {actualDemographics.age && (
-            <div className="actual-selection">
-              Your selection: <strong>{actualDemographics.age}</strong>
-            </div>
-          )}
-        </div>
-
-        <div className="demographic-section">
-          <h4 className="section-label">GENDER</h4>
-          <div className="scores-list">
-            {genderScores.map(({ label, score }) => (
-              <button
-                key={label}
-                className={`score-item ${actualDemographics.gender === label ? "selected-actual" : ""}`}
-                onClick={() => handleDemographicSelect("gender", label)}
-              >
-                <span className="score-label">{label}</span>
-                <span className="score-value">{score}%</span>
-              </button>
-            ))}
-          </div>
-          {actualDemographics.gender && (
-            <div className="actual-selection">
-              Your selection: <strong>{actualDemographics.gender}</strong>
-            </div>
-          )}
-        </div>
-
-        <button
-          className="confirm-demographics-btn"
-          onClick={() => setShowDemographicsPanel(false)}
-        >
-          CONFIRM SELECTIONS
-        </button>
-      </div>
-    );
-  };
-
   return (
     <div className="result-page">
       <Header />
 
       <h2 className="page-subtitle">TO START ANALYSIS</h2>
 
-      {/* Preview Box - Top Right */}
       <div className="preview-box">
         <p className="preview-label">Preview</p>
         <div className="preview-area">
@@ -404,10 +285,8 @@ export default function Result() {
         </div>
       </div>
 
-      {/* Hidden Canvas for capturing photo */}
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
-      {/* Hidden File Input for Gallery */}
       <input
         type="file"
         ref={fileInputRef}
@@ -416,7 +295,6 @@ export default function Result() {
         style={{ display: "none" }}
       />
 
-      {/* Error Display */}
       {error && (
         <div className="error-banner">
           <p>Error: {error}</p>
@@ -424,7 +302,6 @@ export default function Result() {
         </div>
       )}
 
-      {/* Camera Permission Modal */}
       {showCameraModal && (
         <div className="camera-modal-overlay">
           <div className="camera-modal">
@@ -443,7 +320,6 @@ export default function Result() {
         </div>
       )}
 
-      {/* Camera Setup Loading State */}
       {isSettingUpCamera && (
         <div className="camera-setup-loading">
           <div className="diamond-spinner">
@@ -460,10 +336,8 @@ export default function Result() {
         </div>
       )}
 
-      {/* Camera Capture Interface */}
       {isCameraActive && (
         <div className="camera-capture-overlay">
-          {/* Back Button - Bottom Left */}
           <div className="camera-back-button">
             <button onClick={handleCancelCamera} className="back-link-custom">
               <div className="button-diamond">
@@ -473,9 +347,10 @@ export default function Result() {
             </button>
           </div>
 
-          {/* Center Instructions */}
           <div className="camera-instructions">
-            <p className="instructions-title">TO GET BETTER RESULTS MAKE SURE TO HAVE</p>
+            <p className="instructions-title">
+              TO GET BETTER RESULTS MAKE SURE TO HAVE
+            </p>
             <div className="instructions-list">
               <span className="instruction-item">
                 <span className="diamond-bullet">◇</span> NEUTRAL EXPRESSION
@@ -489,7 +364,6 @@ export default function Result() {
             </div>
           </div>
 
-          {/* Video Feed */}
           <video
             ref={videoRef}
             autoPlay
@@ -498,17 +372,18 @@ export default function Result() {
             className="camera-video"
           />
 
-          {/* Right Side Controls */}
           <div className="camera-right-controls">
             <span className="take-picture-text">TAKE PICTURE</span>
             <button className="capture-btn" onClick={handleCapturePhoto}>
-              <FontAwesomeIcon icon={faCamera} className="capture-btn-fa-icon" />
+              <FontAwesomeIcon
+                icon={faCamera}
+                className="capture-btn-fa-icon"
+              />
             </button>
           </div>
         </div>
       )}
 
-      {/* Photo Preview Screen */}
       {showPhotoPreview && capturedImage && (
         <div className="photo-preview-overlay">
           <div className="photo-preview-container">
@@ -533,24 +408,24 @@ export default function Result() {
         </div>
       )}
 
-      {/* Loading Overlay - Spinning 3 Diamonds with "PREPARING YOUR ANALYSIS" */}
       {loading && (
-  <div className="loading-overlay">
-    <div className="loading-spinner-container">
-      <div className="loading-diamonds">
-        <ThreeDiamonds />
-      </div>
-      <p className="loading-text-centered">PREPARING YOUR ANALYSIS</p>
-    </div>
-  </div>
-)}
+        <div className="loading-overlay">
+          <div className="loading-spinner-container">
+            <div className="loading-diamonds">
+              <ThreeDiamonds />
+            </div>
+            <p className="loading-text-centered">PREPARING YOUR ANALYSIS</p>
+          </div>
+        </div>
+      )}
 
-      {/* Success Modal */}
       {showSuccessModal && (
         <div className="success-modal-overlay">
           <div className="success-modal">
             <h3 className="success-modal-title">SKINSTRIC SAYS:</h3>
-            <p className="success-modal-message">Image analyzed successfully!</p>
+            <p className="success-modal-message">
+              Image analyzed successfully!
+            </p>
             <button className="success-modal-btn" onClick={handleSuccessOk}>
               OK
             </button>
@@ -559,7 +434,6 @@ export default function Result() {
       )}
 
       <div className="options-container">
-        {/* Camera Option - Left */}
         <div
           className={`option-item camera-item ${selectedOption === "camera" ? "selected" : ""}`}
           onClick={handleCameraClick}
@@ -579,7 +453,6 @@ export default function Result() {
           </div>
         </div>
 
-        {/* Gallery Option - Right */}
         <div
           className={`option-item gallery-item ${selectedOption === "gallery" ? "selected" : ""}`}
           onClick={handleGalleryClick}
@@ -604,7 +477,6 @@ export default function Result() {
         </div>
       </div>
 
-      {/* Navigation Buttons */}
       <div className="back-button">
         <Link to="/testing" className="back-link-custom">
           <div className="button-diamond">
@@ -613,8 +485,6 @@ export default function Result() {
           <span className="button-text">BACK</span>
         </Link>
       </div>
-
-      
     </div>
   );
 }

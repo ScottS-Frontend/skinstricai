@@ -60,36 +60,35 @@ export default function Testing() {
   };
 
   const submitToAPI = async (userName, userCity) => {
-    try {
-      const response = await fetch('https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: userName.trim(),
-          location: userCity.trim()
-        })
-      });
+  try {
+    const response = await fetch('https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: userName.trim(),
+        location: userCity.trim()
+      })
+    });
 
-      if (!response.ok) {
-        throw new Error('API submission failed');
-      }
-
-      const data = await response.json();
-      console.log('API Response:', data);
-      
-      setTimeout(() => {
-        setIsProcessing(false);
-        setIsComplete(true);
-      }, 2000);
-      
-    } catch (error) {
-      console.error('Error submitting to API:', error);
-      setError('Submission failed. Please try again.');
-      setIsProcessing(false);
+    if (!response.ok) {
+      throw new Error('API submission failed');
     }
-  };
+
+    // Wait for response but don't need the data
+    await response.json();
+
+    setTimeout(() => {
+      setIsProcessing(false);
+      setIsComplete(true);
+    }, 2000);
+    
+  } catch (error) {
+    setError('Submission failed. Please try again.');
+    setIsProcessing(false);
+  }
+};
 
   useEffect(() => {
     if (isComplete) {
