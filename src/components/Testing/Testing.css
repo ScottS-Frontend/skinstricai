@@ -342,6 +342,11 @@
   .button-arrow {
     font-size: 8px;
   }
+
+  .page-subtitle {
+    top: 90px !important;
+    left:3.5rem !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -353,6 +358,12 @@
   .proceed-text {
     font-size: 16px;
   }
+}
+
+.page-subtitle {
+  top: 90px !important;
+  left: 1rem;
+  font-size: 11px;
 }
 
 @media (max-width: 480px) {
