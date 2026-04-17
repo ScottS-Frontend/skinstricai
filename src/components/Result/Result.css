@@ -1170,7 +1170,7 @@
 
   .page-subtitle {
     font-size: 11px;
-    left: 1.5rem;
+    left: 1.5rem !important;
   }
 
   .loading-spinner-container {
