@@ -9,7 +9,6 @@
   box-sizing: border-box;
 }
 
-/* Diamond containers - replaces side-square */
 .side-diamond {
   position: absolute;
   width: 602px;
@@ -35,12 +34,11 @@
   transform: translateX(50%);
 }
 
-/* The actual diamond image */
 .diamond-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter:brightness(0.7) contrast(1.2);
+  filter: brightness(0.7) contrast(1.2);
 }
 
 .side-button {
@@ -63,6 +61,7 @@
   top: 50%;
   transform: translateY(-50%);
   text-decoration: none;
+  flex-wrap: nowrap;
 }
 
 .left-button {
@@ -188,19 +187,126 @@
   }
 }
 
-@media (max-width: 1200px) {
+/* 1024px breakpoint */
+@media (max-width: 1024px) {
   .side-diamond {
-    display: none;
+    width: 450px;
+    height: 450px;
+    margin-top: -225px;
+  }
+
+  .main-title {
+    font-size: 80px;
+    line-height: 76px;
+  }
+
+  .left-button {
+    transform: translateY(-50%) translateX(-180px);
+  }
+
+  .right-button {
+    transform: translateY(-50%) translateX(180px);
   }
 }
 
+/* 768px breakpoint */
 @media (max-width: 768px) {
+  .side-diamond {
+    width: 320px;
+    height: 320px;
+    margin-top: -160px;
+  }
+
+  .main-title {
+    font-size: 56px;
+    line-height: 52px;
+    letter-spacing: -0.05em;
+  }
+
+  .left-button {
+    transform: translateY(-50%) translateX(-140px);
+  }
+
+  .right-button {
+    transform: translateY(-50%) translateX(140px);
+  }
+
+  .button-text {
+    font-size: 12px;
+  }
+
   .bottom-text {
     left: 1.5rem;
     right: 1.5rem;
+    bottom: 1.5rem;
   }
 
   .bottom-text p {
     font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .text-container.left {
+    left: 35%;
+  }
+
+  .text-container.right {
+    left: 65%;
+  }
+}
+
+/* 640px breakpoint */
+@media (max-width: 640px) {
+  .side-diamond {
+    width: 280px;
+    height: 280px;
+    margin-top: -140px;
+  }
+
+  .main-title {
+    font-size: 40px;
+    line-height: 38px;
+    letter-spacing: -0.04em;
+  }
+
+  .left-button {
+    transform: translateY(-50%) translateX(-120px);
+  }
+
+  .right-button {
+    transform: translateY(-50%) translateX(120px);
+  }
+
+  .button-text {
+    font-size: 11px;
+  }
+
+  .button-diamond {
+    width: 24px;
+    height: 24px;
+  }
+
+  .button-arrow {
+    font-size: 8px;
+  }
+
+  .bottom-text {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    text-align: center;
+  }
+
+  .bottom-text p {
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+  .text-container.left {
+    left: 30%;
+  }
+
+  .text-container.right {
+    left: 70%;
   }
 }

@@ -49,7 +49,7 @@
   margin: 0;
 }
 
-/* Main Content Layout - Natural flow, not absolute */
+/* Main Content Layout */
 .summary-content {
   display: flex;
   gap: 24px;
@@ -59,6 +59,7 @@
   padding: 10px 32px 24px;
   align-items: stretch;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
 /* Left Sidebar */
@@ -113,7 +114,7 @@
   transition: color 0.3s ease;
 }
 
-/* Center Display - Full size again */
+/* Center Display */
 .summary-center {
   flex: 1;
   background: #f5f5f5;
@@ -138,7 +139,6 @@
   text-transform: capitalize;
 }
 
-/* New row layout for image + progress ring */
 .center-content-row {
   display: flex;
   align-items: center;
@@ -164,11 +164,11 @@
 }
 
 .age-suffix {
-    text-transform: lowercase;
-    font-size: inherit;
+  text-transform: lowercase;
+  font-size: inherit;
 }
 
-/* Progress Ring - Full size */
+/* Progress Ring */
 .progress-ring-container {
   position: relative;
   width: 280px;
@@ -320,7 +320,7 @@
   z-index: 10;
 }
 
-/* Back Button - Just diamond + text, no box */
+/* Back Button */
 .back-link-custom {
   display: inline-flex;
   align-items: center;
@@ -342,8 +342,6 @@
   margin: 0;
   text-align: center;
 }
-
-
 
 /* Button diamond styles */
 .button-diamond {
@@ -379,7 +377,6 @@
   color: #1a1b1c;
 }
 
-/* Container for the two new buttons */
 .summary-action-buttons {
   display: flex;
   gap: 16px;
@@ -427,39 +424,80 @@
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .summary-content {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 10px 24px 24px;
   }
-  
-  .summary-sidebar,
-  .summary-options {
-    width: 100%;
-  }
-  
+
   .summary-sidebar {
-    display: flex;
-    gap: 12px;
+    width: 140px;
+    flex-shrink: 0;
   }
-  
-  .sidebar-block {
+
+  .summary-options {
+    width: 260px;
+    flex-shrink: 0;
+  }
+
+  .summary-center {
     flex: 1;
-    margin-bottom: 0;
+    min-width: 0;
+    padding: 24px;
+  }
+
+  .center-title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .center-content-row {
+    gap: 24px;
+  }
+
+  .progress-ring-container,
+  .progress-ring {
+    width: 220px;
+    height: 220px;
+  }
+
+  .progress-percentage {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .user-image-container {
+    width: 160px;
+    height: 160px;
   }
 }
 
 @media (max-width: 768px) {
-  .summary-page {
+  .summary-content {
+    flex-direction: column;
+    margin-top: 120px;
     padding: 80px 16px 100px;
   }
-  
+
+  .summary-sidebar,
+  .summary-options {
+    width: 100%;
+  }
+
+  .summary-sidebar {
+    display: flex;
+    gap: 12px;
+  }
+
+  .sidebar-block {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
   .summary-title {
     font-size: 32px;
     line-height: 40px;
-  }
-  
-  .summary-hint {
-    display: none;
   }
 
   .center-content-row {
@@ -472,5 +510,87 @@
     height: 150px;
   }
 
+  .summary-bottom-nav {
+    margin-top: -80px;
+    padding: 0 16px;
+  }
+}
 
+@media (max-width: 640px) {
+  .summary-header {
+    left: 16px;
+    top: 60px;
+  }
+
+  .summary-title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .summary-label {
+    font-size: 14px;
+  }
+
+  .summary-content {
+    padding: 60px 16px 80px;
+    margin-top: 100px;
+  }
+
+  .center-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .progress-ring-container,
+  .progress-ring {
+    width: 180px;
+    height: 180px;
+  }
+
+  .progress-percentage {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .options-list {
+    max-height: 300px;
+  }
+
+  .summary-bottom-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    margin-top: -70px;
+  }
+
+  .summary-hint {
+    order: 0;
+    width: auto;
+    flex: 1;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .back-link-custom {
+    font-size: 12px;
+  }
+
+  .button-diamond {
+    width: 24px;
+    height: 24px;
+  }
+
+  .reset-button,
+  .confirm-button {
+    padding: 12px 20px;
+    font-size: 12px;
+  }
 }

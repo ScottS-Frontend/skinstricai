@@ -24,7 +24,7 @@
   line-height: 20px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #1A1B1C;
+  color: #1a1b1c;
   margin: 0 0 16px 0;
 }
 
@@ -35,7 +35,7 @@
   line-height: 16px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #1A1B1C;
+  color: #1a1b1c;
   margin: 0 0 4px 0;
 }
 
@@ -46,7 +46,7 @@
   line-height: 16px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #1A1B1C;
+  color: #1a1b1c;
   margin: 0;
 }
 
@@ -125,27 +125,23 @@
   cursor: not-allowed;
 }
 
-
-
-/* Darker gray on hover for ALL diamonds */
 .diamond-item:hover .diamond-shape {
-  background: #D1D5DB;
+  background: #d1d5db;
 }
 
-/* Keep top diamond's default darker color */
 .top-diamond .diamond-shape {
-  background: #E5E7EB;
+  background: #e5e7eb;
 }
 
 .top-diamond:hover .diamond-shape {
-  background: #D1D5DB;
+  background: #d1d5db;
 }
 
 /* Diamond shapes */
 .diamond-shape {
   width: 140px;
   height: 140px;
-  background: #F3F4F6;
+  background: #f3f4f6;
   transform: rotate(45deg);
   display: flex;
   flex-direction: column;
@@ -165,7 +161,7 @@
   line-height: 20px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #1A1B1C;
+  color: #1a1b1c;
   text-align: center;
   display: block;
   margin: 0;
@@ -181,7 +177,6 @@
   text-align: center;
 }
 
-/* Separated diamond buttons - -40px overlap */
 .top-diamond {
   margin-bottom: -40px;
 }

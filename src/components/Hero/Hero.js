@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Hero.css";
-import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
-import diamondSmall from '../../assets/images/diamond-small.png';
+import { Link } from "react-router-dom";
+import Header from "../Header/Header";
+import diamondSmall from "../../assets/images/diamond-small.png";
 
 export default function Hero() {
   const [hoverState, setHoverState] = useState("center");
@@ -15,11 +15,7 @@ export default function Hero() {
       <div
         className={`side-diamond left-diamond ${hoverState === "right" ? "hidden" : ""}`}
       >
-        <img 
-          src={diamondSmall} 
-          alt="Left diamond" 
-          className="diamond-img"
-        />
+        <img src={diamondSmall} alt="Left diamond" className="diamond-img" />
         <button
           className="side-button left-button"
           onMouseEnter={() => setHoverState("left")}
@@ -36,12 +32,9 @@ export default function Hero() {
       <div
         className={`side-diamond right-diamond ${hoverState === "left" ? "hidden" : ""}`}
       >
-        <img 
-          src={diamondSmall} 
-          alt="Right diamond" 
-          className="diamond-img"
-        />
-        <Link to="/testing"
+        <img src={diamondSmall} alt="Right diamond" className="diamond-img" />
+        <Link
+          to="/testing"
           className="side-button right-button"
           onMouseEnter={() => setHoverState("right")}
           onMouseLeave={() => setHoverState("center")}
@@ -56,7 +49,11 @@ export default function Hero() {
       <div className={`text-container ${hoverState}`}>
         <div className="title-wrapper">
           <h1 className="main-title">
-            <span className="title-inner">Sophisticated<br />skincare</span>
+            <span className="title-inner">
+              Sophisticated
+              <br />
+              skincare
+            </span>
           </h1>
         </div>
       </div>
@@ -65,7 +62,7 @@ export default function Hero() {
         <p>
           SKINSTRIC DEVELOPED AN A.I. THAT CREATES
           <br />
-          A HIGHLY-PERSONALISED ROUTINE TAILORED TO
+          A HIGHLY-PERSONALIZED ROUTINE TAILORED TO
           <br />
           WHAT YOUR SKIN NEEDS.
         </p>

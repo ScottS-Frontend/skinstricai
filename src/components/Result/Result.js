@@ -438,17 +438,19 @@ export default function Result() {
           className={`option-item camera-item ${selectedOption === "camera" ? "selected" : ""}`}
           onClick={handleCameraClick}
         >
-          <div className="diamond-area">
-            <ThreeDiamonds />
-            <div className="center-icon-wrapper">
-              <img src={cameraIcon} alt="Camera" className="center-icon" />
+          <div className="option-content-wrapper">
+            <div className="diamond-area">
+              <ThreeDiamonds />
+              <div className="center-icon-wrapper">
+                <img src={cameraIcon} alt="Camera" className="center-icon" />
+              </div>
             </div>
-          </div>
-          <div className="scan-text-group camera-scan-group">
-            <img src={scanLine} alt="Scan line" className="scan-line-img" />
-            <div className="option-text camera-text-position">
-              <p className="option-label">ALLOW A.I.</p>
-              <p className="option-label">TO SCAN YOUR FACE</p>
+            <div className="scan-text-group camera-scan-group">
+              <img src={scanLine} alt="Scan line" className="scan-line-img" />
+              <div className="option-text camera-text-position">
+                <p className="option-label">ALLOW A.I.</p>
+                <p className="option-label">TO SCAN YOUR FACE</p>
+              </div>
             </div>
           </div>
         </div>
@@ -457,21 +459,23 @@ export default function Result() {
           className={`option-item gallery-item ${selectedOption === "gallery" ? "selected" : ""}`}
           onClick={handleGalleryClick}
         >
-          <div className="diamond-area">
-            <ThreeDiamonds />
-            <div className="center-icon-wrapper">
-              <img src={galleryIcon} alt="Gallery" className="center-icon" />
+          <div className="option-content-wrapper">
+            <div className="diamond-area">
+              <ThreeDiamonds />
+              <div className="center-icon-wrapper">
+                <img src={galleryIcon} alt="Gallery" className="center-icon" />
+              </div>
             </div>
-          </div>
-          <div className="scan-text-group gallery-scan-group">
-            <img
-              src={scanLine}
-              alt="Scan line"
-              className="scan-line-img gallery-scan-line"
-            />
-            <div className="option-text gallery-text-position">
-              <p className="option-label">ALLOW A.I.</p>
-              <p className="option-label">ACCESS GALLERY</p>
+            <div className="scan-text-group gallery-scan-group">
+              <img
+                src={scanLine}
+                alt="Scan line"
+                className="scan-line-img gallery-scan-line"
+              />
+              <div className="option-text gallery-text-position">
+                <p className="option-label">ALLOW A.I.</p>
+                <p className="option-label">ACCESS GALLERY</p>
+              </div>
             </div>
           </div>
         </div>
