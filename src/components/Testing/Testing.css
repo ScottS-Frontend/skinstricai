@@ -343,9 +343,9 @@
     font-size: 8px;
   }
 
-  .page-subtitle {
+  .testing-page .page-subtitle {
     top: 90px !important;
-    left:3.5rem !important;
+    left: 3.5rem !important;
   }
 }
 
@@ -358,12 +358,12 @@
   .proceed-text {
     font-size: 16px;
   }
-}
 
-.page-subtitle {
-  top: 90px !important;
-  left: 1rem;
-  font-size: 11px;
+  .page-subtitle {
+    top: 90px !important;
+    left: 3rem !important;
+    font-size: 11px;
+  }
 }
 
 @media (max-width: 480px) {
